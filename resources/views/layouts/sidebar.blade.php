@@ -71,7 +71,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fas fa-sign-out-alt nav-icon"></i>
-                  <p>Logout</p>
+                  <p>Logout ppp</p>
                 </a>
             </li>
           </li>
