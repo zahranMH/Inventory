@@ -46,13 +46,19 @@ class BarangKeluarController extends Controller
 
         $stok = $barang->stok;
 
-        BarangKeluar::create($validatedData);
-        // update stok barang
-        $barang->update([
-            'stok' => $stok - $request->jumlah
-        ]);
+        if ($stok < $request->jumlah ) {
+           return redirect()->back()->with('failed', 'Stok Kurang');
+        } else {
+            BarangKeluar::create($validatedData);
+            // update stok barang
+            $barang->update([
+                'stok' => $stok - $request->jumlah
+            ]);
 
-        return redirect('/BarangKeluar')->with('success', 'Data Berhasil Ditambahkan');
+            return redirect('/BarangKeluar')->with('success', 'Data Berhasil Ditambahkan');
+        }
+
+        
     }
 
     /**

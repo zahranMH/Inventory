@@ -53,4 +53,14 @@
         </div>
     </section>
 </div>
+
+@if(session('failed'))
+    <script>
+        Swal.fire({
+        title: "Gagal",
+        text: "{{ session('failed') }}",
+        icon: "error"
+    });
+    </script>
+@endif
 @endsection

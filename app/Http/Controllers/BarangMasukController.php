@@ -62,7 +62,9 @@ class BarangMasukController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('home.barang_masuk.show', [
+            'barang_masuk' => BarangMasuk::find($id)
+        ]);
     }
 
     /**

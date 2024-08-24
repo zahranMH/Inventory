@@ -4,7 +4,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -69,12 +69,31 @@
               </li>
             </ul>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a class="nav-link" onclick="return confirmLogout(event)">
                   <i class="fas fa-sign-out-alt nav-icon"></i>
-                  <p>Logout ppp</p>
+                  <p>Logout</p>
                 </a>
             </li>
           </li>
         </ul>
       </nav>
+
+      <script>
+        function confirmLogout(event) {
+            event.preventDefault();
+            Swal.fire({
+            title: "Yakin?",
+            text: "Yakin Ingin Logout",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location="/actionlogout";
+            }
+            });
+        }
+    </script>
       <!-- /.sidebar-menu -->

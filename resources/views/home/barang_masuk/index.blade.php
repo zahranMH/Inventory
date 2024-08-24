@@ -15,13 +15,14 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped" id="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Nama Supplier</th>
                                             <th scope="col">Jumlah</th>
+                                            <th scope="col">Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,6 +32,9 @@
                                             <td>{{ $barang_masuk->barang->nama_barang }}</td>
                                             <td>{{ $barang_masuk->supplier->nama_supplier }}</td>
                                             <td>{{ $barang_masuk->jumlah }}</td>
+                                            <td>
+                                                <a href="/BarangMasuk/{{ $barang_masuk->id }}" class="btn btn-info">Detail</a>
+                                            </td>
                                         </tr>                                            
                                         @endforeach
                                     </tbody>

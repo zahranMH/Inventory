@@ -12,7 +12,7 @@ class BarangMasuk extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function Barang()
+    public function barang()
     {
         return $this->belongsto(Barang::class, 'id_barang', 'id');
     }

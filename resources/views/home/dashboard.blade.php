@@ -30,9 +30,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $totalBarang }}</h3>
 
-                <p>New Orders</p>
+                <p>Jumlah Barang</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -45,9 +45,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{ $totalBarangKeluar }}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Total Barang Keluar</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -60,9 +60,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $totalBarangMasuk }}</h3>
 
-                <p>User Registrations</p>
+                <p>Total Barang Masuk</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -75,9 +75,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $totalSupplier }}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Total Supplier</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -95,58 +95,26 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Sample Table</h3>
+                    <h3>History Terakhir Table <b>Barang Masuk</b></h3>
                 </div>
                 <div class="card-body">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
+                      <th>Nama Barang</th>
+                      <th>Nama Supplier</th>
+                      <th>Jumlah</th>
+                      <th>Tanggal</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
+                      <td>1</td>
+                      <td>{{ $historyBarangMasuk->barang->nama_barang }}</td>
+                      <td>{{ $historyBarangMasuk->supplier->nama_supplier }}</td>
+                      <td>{{ $historyBarangMasuk->jumlah }}</td>
+                      <td>{{ $historyBarangMasuk->created_at->format('d-m-Y') }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -154,7 +122,50 @@
             </div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>History Terakhir Table <b>Barang Keluar</b></h3>
+                </div>
+                <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Nama Barang</th>
+                      <th>Nama Customer</th>
+                      <th>Jumlah</th>
+                      <th>Tanggal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1.</td>
+                      <td>{{ $historyBarangKeluar->barang->nama_barang }}</td>
+                      <td>{{ $historyBarangKeluar->nama_customer }}</td>
+                      <td>{{ $historyBarangKeluar->jumlah }}</td>
+                      <td>{{ $historyBarangKeluar->created_at->format('d-m-Y') }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     </section>
 
   </div>
+
+  @if(session('success')) 
+  <script>
+        Swal.fire({
+        title: "Berhasil",
+        text: "{{ session('success') }}",
+        icon: "success"
+    });
+    </script>
+  @endif
 @endsection
