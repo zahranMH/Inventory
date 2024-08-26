@@ -11,16 +11,16 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 
 // login
-Route::get('/', [LoginController::class, 'index']);
-Route::post('/actionlogin', [LoginController::class, 'actionLogin']);
-Route::get('/actionlogout', [LoginController::class, 'actionLogout']);
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/actionlogin', [LoginController::class, 'actionLogin'])->name('login.post')->middleware('guest');
+Route::get('/actionlogout', [LoginController::class, 'actionLogout'])->middleware('auth');
 
-Route::resource('/User', UserController::class);
-Route::resource('/Jenis', JenisController::class);
-Route::resource('/Barang', BarangController::class);
-Route::resource('/Supplier', SupplierController::class);
-Route::resource('/BarangMasuk', BarangMasukController::class);
-Route::resource('/BarangKeluar', BarangKeluarController::class);
+Route::resource('/User', UserController::class)->middleware('is_admin');
+Route::resource('/Jenis', JenisController::class)->middleware('auth');
+Route::resource('/Barang', BarangController::class)->middleware('auth');
+Route::resource('/Supplier', SupplierController::class)->middleware('auth');
+Route::resource('/BarangMasuk', BarangMasukController::class)->middleware('auth');
+Route::resource('/BarangKeluar', BarangKeluarController::class)->middleware('auth');
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 

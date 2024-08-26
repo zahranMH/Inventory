@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -12,6 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        Gate::authorize('is_admin');
         return view('home.user.index', [
             'users' => User::all()
         ]);
