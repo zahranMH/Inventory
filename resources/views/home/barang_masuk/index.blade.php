@@ -12,6 +12,8 @@
                         <div class="card-header">
                             <h3>Halaman Data Barang Masuk</h3>
                             <a href="/BarangMasuk/create" class="btn btn-primary">Tambah Data</a>
+                            <a href="/cetak_barangMasuk" class="btn btn-info"><i class="fas fa-print"></i> Cetak Laporan</a>
+                            <a href="/donwload_barangMasuk" class="btn btn-info"><i class="fas fa-download"></i> Donwload Laporan</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

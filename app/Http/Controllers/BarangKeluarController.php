@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BarangKeluar;
 use App\Models\Barang;
+use PDF;
 
 class BarangKeluarController extends Controller
 {
@@ -91,5 +92,36 @@ class BarangKeluarController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function cetak()
+    {
+        return view('home.pdf.barangKeluarCetak', [
+            'barang_keluars' => BarangKeluar::all()
+        ]);
+    }
+
+    public function donwload()
+    {
+        $pdf = PDF::loadview('home.pdf.barangKeluarCetak', [
+            'barang_keluars' => BarangKeluar::all()
+        ]);
+
+        return $pdf->download("barang_keluar.pdf");
+    }
+
+    public function cetakStruk(String $id)
+    {
+        $barang_keluar = BarangKeluar::find($id);
+
+        $harga_jual = $barang_keluar->barang->harga_jual;
+        $jumlah_keluar = $barang_keluar->jumlah;
+
+        $total = $harga_jual * $jumlah_keluar;
+
+        return view('home.pdf.strukBarangKeluar', [
+            'barang_keluar' => BarangKeluar::find($id),
+            'total' => $total
+        ]);
     }
 }

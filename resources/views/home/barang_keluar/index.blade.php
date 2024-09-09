@@ -12,6 +12,8 @@
                         <div class="card-header">
                             <h3>Halaman Data Barang Keluar</h3>
                             <a href="/BarangKeluar/create" class="btn btn-primary">Tambah Data</a>
+                            <a href="/cetak_barangKeluar" class="btn btn-info"><i class="fas fa-print"></i> Cetak Laporan</a>
+                            <a href="/donwload_barangKeluar" class="btn btn-info"><i class="fas fa-download"></i> Donwload Laporan</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -22,6 +24,7 @@
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Nama Customer</th>
                                             <th scope="col">Jumlah</th>
+                                            <th scope="col">Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,6 +34,9 @@
                                             <td>{{ $barang_keluar->barang->nama_barang }}</td>
                                             <td>{{ $barang_keluar->nama_customer }}</td>
                                             <td>{{ $barang_keluar->jumlah }}</td>
+                                            <td>
+                                                <a href="/struk_barangKeluar/{{ $barang_keluar->id }}" class="btn btn-success"><i class="fas fa-print"></i> Cetak Struk</a>
+                                            </td>
                                         </tr>                                            
                                         @endforeach
                                     </tbody>

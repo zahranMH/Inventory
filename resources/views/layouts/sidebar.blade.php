@@ -11,6 +11,10 @@
               </p>
             </a>
           </li>
+
+          {{-- cek jika user admin --}}
+          @can('is_admin')
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
@@ -20,17 +24,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-
-              {{-- cek jika user admin --}}
-              @can('is_admin')
               <li class="nav-item">
                 <a href="/User" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kelola Data User</p>
                 </a>
               </li>
-              @endcan
-              {{-- end --}}
               <li class="nav-item">
                 <a href="/Barang" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -51,6 +50,10 @@
               </li>
             </ul>
           </li>
+          
+          @endcan
+          {{-- end --}}  
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-credit-card"></i>

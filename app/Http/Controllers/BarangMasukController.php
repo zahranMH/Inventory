@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BarangMasuk;
 use App\Models\Barang;
 use App\Models\Supplier;
+use PDF;
 
 class BarangMasukController extends Controller
 {
@@ -89,5 +90,21 @@ class BarangMasukController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function donwload()
+    {
+        $pdf = PDF::loadView('home.pdf.barangMasukCetak', [
+            'barang_masuks' => BarangMasuk::all()
+        ]);
+
+        return $pdf->download("barang_masuk.pdf");
+    }
+
+    public function cetak()
+    {
+        return view("home.pdf.barangMasukCetak", [
+            'barang_masuks' => BarangMasuk::all()
+        ]);
     }
 }
